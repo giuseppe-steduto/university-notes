@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Equazioni differenziali ordinarie</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <style>
+        @font-face {
+            font-family: "Computer Modern";
+            src: url('./cmunss.otf');
+        }
+
+        body {
+            font-family: "Computer Modern", sans-serif;
+        }
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        table {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+        }
+
+        th {
+            font-size: 1.1em;
+        }
+
+        p.title {
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th rowspan="2">
+                1° Ordine
+            </th>
+            <td>
+                <p class="title">A variabili separabili<br>
+                    \( y'(x) = a(x)b(y) \)
+                </p>
+            </td>
+            <td colspan="4">
+                \[ \int \frac{dy}{b(y)} = \int a(x) dx \]
+                Risolvi l'integrale (ricorda il \(+c\) al secondo) ed esplicita la \(y\)!
+            </td>
+        </tr>
+        <tr>
+            <td><p class="title">Lineari <br>
+                \( y' + a(t)y = f(t) \)
+            </p></td>
+            <td colspan="4">
+                \[y(t) = e^{-A(t)}\left(\int f(t)e^{A(t)} + c\right)\]
+            </td>
+        </tr>
+
+        <!--2 ordine omogenee-->
+        <tr>
+            <th rowspan="13">
+                2° Ordine (a coefficienti costanti)
+            </th>
+            <td rowspan="3">
+                <p class="title">
+                    Omogenea <br />
+                    \(ay'' + by' + cy = 0\)
+                </p>
+            </td>
+            <td rowspan="3">
+                Risolvere l'eq caratteristica <br />
+                \( p(\lambda) = a\lambda^2 + b\lambda + c = 0\)
+            </td>
+            <td>\(\Delta > 0 \)</td>
+            <td>\(\lambda_1 \neq \lambda_2\) soluzioni</td>
+            <td>\[y(x) = c_1e^{\lambda_1x} + c_2e^{\lambda_2x}\]</td>
+        </tr>
+        <tr>
+            <td>\(\Delta = 0 \)</td>
+            <td>\(\lambda = \lambda_1 = \lambda_2\) soluzioni</td>
+            <td>\[y(x) = c_1e^\lambda + c_2te^\lambda\]</td>
+        </tr>
+        <tr>
+            <td>\(\Delta &lt; 0 \)</td>
+            <td>\(\lambda_{12} = \alpha \pm i\beta \) soluzioni</td>
+            <td>\[y(x) = e^{\alpha x}(c_1cos(\beta x) + c_2 sin(\beta x))\]</td>
+        </tr>
+
+        <!--2 ordine complete-->
+        <tr>
+            <td rowspan="10">
+                <p class="title">
+                    Completa <br>
+                    \(ay'' + by' + cy = f(x)\)
+                </p>
+                <br />
+                Va risolta prima l'equazione omogenea, per trovare \(y_o(x)\) (spesso con i metodi visti sopra).
+                Poi, va trovata un'equazione particolare \(y_p(x)\).<br />
+                <br />
+                Per farlo, parti dalle \(y_p(x)\) proposte a lato a seconda della forzante, sostituiscile nell'equazione, e determina le costanti in modo che soddisfino l'equazione.
+                <br /><br>L'integrale generale è dunque:
+                \[y(x) = y_o(x) + y_p(x)\]
+            </td>
+            <td rowspan="3">\(f(x)\) polinomiale di grado \(n\)</td>
+            <td>\(c \neq 0\)</td>
+            <td colspan="2">Parti da \(y_p(x)\) di grado \(n\)</td>
+        </tr>
+        <tr>
+            <td>\(c = 0, b\neq 0\)</td>
+            <td colspan="2">Parti da \(y_p(x)\) di grado \((n + 1)\)</td>
+        </tr>
+        <tr>
+            <td>\(c = 0, b = 0\)</td>
+            <td colspan="2">Parti da \(y_p(x)\) di grado \((n + 2)\)</td>
+        </tr>
+
+        <tr>
+            <td rowspan="3">\(f(x)\) esponenziale \(Ae^{\alpha t}\)</td>
+            <td colspan="2">\( \alpha \) non è radice di \(p(\lambda)\)</td>
+            <td>\[y_p(x) = Ce^{\alpha t}\]</td>
+        </tr>
+        <tr>
+            <td colspan="2">\( \alpha\) è radice singola di \(p(\lambda)\)</td>
+            <td>\[y_p(x) = Cte^{\alpha t}\]</td>
+        </tr>
+        <tr>
+            <td colspan="2">\( \alpha \) è radice doppia di \(p(\lambda)\)</td>
+            <td>\[y_p(x) = Ct^2e^{\alpha t}\]</td>
+        </tr>
+
+        <tr>
+            <td rowspan="2">\(f(x)\) trigonometrica \(Asin(\nu t) + Bcos(\nu t)\) </td>
+            <td>\(i\nu\) non è radice di \(p(\lambda)\)</td>
+            <td colspan="2">\[y_p(x) = A sin(\nu t) + Bcos(\nu t)\]</td>
+        </tr>
+        <tr>
+            <td>\(i\nu\) è radice di \(p(\lambda)\)</td>
+            <td colspan="2">\[y_p(x) = t(A sin(\nu t) + Bcos(\nu t))\]</td>
+        </tr>
+        <tr>
+            <td rowspan="2">\(f(x)\) esponenziale-trigonometrica 
+                \(e^{\alpha x}cos(\nu x) \) oppure \(e^{\alpha x}sin(\nu x) \)
+            </td>
+            <td> Forzante con coseno </td>
+            <td colspan="2">
+                Parti da
+                \[ y_p(x) = e^{x(\alpha + \nu i)} \]
+                e poi prendine la parte <em>reale.</em>
+            </td>
+        </tr>
+        <tr>
+            <td> Forzante con seno </td>
+           <td colspan="2">
+            Parti da
+            \[ y_p(x) = e^{x(\alpha + \nu i)} \]
+            e poi prendine la parte <em>immaginaria.</em>
+           </td> 
+        </tr>
+    </table>
+</body>
+
+</html>
